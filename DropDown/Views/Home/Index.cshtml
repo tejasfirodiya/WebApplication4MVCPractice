@@ -1,0 +1,44 @@
+﻿@model Selectid ;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+@{
+    var servic = new Services();
+    var country = servic.Getall();
+    var states = servic.Getalls(Model.id);
+} 
+
+<label for="cars">country</label>
+<select name="cars" id="country" onchange="Display(country)">
+    @foreach (var item in country)
+    {
+      <option value=@item.CountryId>@item.CountryName</option>
+    }
+  </select>
+
+  <label asp-for="id" id="values">Choose a car:</label>
+
+
+  <label for="cars">State:</label>
+<select name="cars" id="State" >
+    @foreach (var item2 in states)
+    {
+      <option value=@item2.StateId>@item2.StateName</option>
+    }
+  </select>
+  <label id="values">Choose a car:</label>
+
+
+
+
+  <script>
+
+      function Display(s){
+          document.getElementById('values').innerHTML=s.value;
+
+      }
+
+
+
+  </script>
